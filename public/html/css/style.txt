@@ -1,0 +1,89 @@
+
+#tableHeader{
+    background-color: #216aaf;
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif
+} 
+#tableBodyRow{
+    background-color: snow;
+}
+#tableBodyRow:hover{
+    background-color: aquamarine;
+}
+#pageHeader{
+    color: yellow;
+    font-weight: bold;
+    font-style: italic;
+    font-family: Georgia, 'Times New Roman', Times, serif
+}
+
+#bg{
+    background-image: url('../images/backgrounds/bg2.jpg')
+}
+
+#navHeaders{
+    font-style: bold;
+}
+#box-one{
+    margin:0px 0 20px 0;
+    padding:10px;
+    border:1px solid rgba(0,0,0,0.2);
+    background: hotpink;
+    color:#fff;
+    border-radius:4px;
+  }
+
+#jumbo{
+    background-color: aqua;
+	font-size:20px
+}
+
+ .v-header{
+    height:100vh;
+    display:flex;
+    align-items:center;
+    color:#fff;
+  }
+  
+  .fullscreen-video-wrap{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+  }
+  
+  .fullscreen-video-wrap video{
+    min-height:100%;
+    min-width:100%;
+  }
+  
+  .header-overlay{
+    height:100vh;
+    position: absolute;
+    top:0;
+    left:0;
+    width:100vw;
+    z-index:1;
+    background:#225470;
+    opacity:0.85;
+  }
+  
+  .header-content{
+    z-index:2;
+  }
+  
+  .header-content h1{
+    font-size:50px;
+    margin-bottom:0;
+  }
+  
+  .header-content p{
+    font-size:1.5rem;
+    display:block;
+    padding-bottom:2rem;
+  }
+
+ 

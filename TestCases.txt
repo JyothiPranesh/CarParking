@@ -1,0 +1,14 @@
+once the page opens, there is a text box which says "enter the number of slots", we need to enter the number of slots 
+needed and click the button get car slots. This gives the table with the car details and the slots..
+
+We can enter only the numbers in the text box and other data types will throw the error.
+
+There is a remove button provided at each row, next to the car details, clicking the button will remove the respective
+entry and makes the car free for the other slots
+
+There is an add button, and text boxes adjacent to it. When we enter the car details like colour and registration no,
+it will allocate the minimum slot no avaliable.
+
+
+
+

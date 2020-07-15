@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="carParking">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Car Parking</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js"></script>
+  <script src="controllers/controller.js"></script>
+
+  <link rel="stylesheet" href="css/semantic.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background-image: url('bg2.jpg')" id="bg" ng-controller="carParkingCtrl">
+
+
+  <div class="container-fluid">
+    <div id="navigation" class="navbar navbar-inverse navbar-fixed-top navigation" style="margin-bottom: 100px">
+  <div class="navbar-header">
+        <a class="navbar-brand" href="#">Car Parking Application</a>
+      </div>
+    </div>
+    
+     <div class="navbar navbar-inverse navbar-fixed-top " ng-show="showFailedToAddCarSlots||noSlotsAvailable||newCarSlotsAllocated||addCarSuccess||inCorrectVal||isEmptySlot">
+        <div class="alert alert-danger"ng-show="showFailedToAddCarSlots">
+            <h4 style="color: black ; text-align: center; font-weight: bold">Cannot Add Car Slots ! Please enter a valid number</h4>
+          </div>
+  <div class="alert alert-danger" ng-show="noSlotsAvailable">
+        <h4 style="color: black ; text-align: center; font-weight: bold">Sorry, No Parking slots available at the moment </h4>
+      </div>
+
+      <div class="alert alert-success" ng-show="newCarSlotsAllocated">
+        <h4 style="color: black ; text-align: center; font-weight: bold">{{SlotNo}} Car Slots Allocated Successfully</h4>
+      </div>
+
+      <div class="alert alert-success" ng-show="addCarSuccess">
+        <h4 style="color: black ; text-align: center; font-weight: bold">{{carAdded}}</h4>
+      </div>
+      <div class="alert alert-danger" ng-show="isEmptySlot">
+        <h4 style="color: black ; text-align: center; font-weight: bold">{{ emptySlotMessage}}</h4>
+      </div>
+      <div class="alert alert-danger" ng-show="inCorrectVal">
+        <h4 style="color: black ; text-align: center; font-weight: bold">{{ inCorrectValMessage}}</h4>
+      </div>
+    </div>
+         
+         
+      </div>
+
+    <div id="pageHeader" class="page-header" style="margin-bottom: 30px;margin-top: 75px">
+      <h1 class="title">
+        <i>Car Parking</i>
+      </h1>
+    </div>
+    
+   <input  style="margin-bottom: 10px" type="number" class="form-control" placeholder="Enter the no of slots" ng-model="SlotNo">
+ 
+
+    <button class="ui inverted red button" style="margin-bottom: 10px" ng-click="createCarObjs()">Get Car Slots</button>
+
+    <div ng-show="carSlotsAvailable" class="alert alert-info" style="margin-bottom:10px ; font-weight:bold;color:black">
+      Total Car Slots  : {{SlotNo}}
+    </div>
+    <div ng-show="carSlotsAvailable" class="alert alert-info" style="margin-bottom:10px ; font-weight:bold;color:black">
+      Total Car Slots Available : {{removedCarSlots.length}}
+    </div>
+    <select style="margin-bottom: 10px" ng-show="carSlotsAvailable" class="form-control" ng-model="selectedName">
+        <option value="">Please Select a Filter Category</option>
+        <option ng-repeat="x in valToBeSelected">{{x}}</option>
+    </select>
+
+    <input placeholder="Enter A Value"  style="margin-bottom: 10px" ng-show="carSlotsAvailable"  type="text"   class="form-control" ng-model="EnteredValue"  ng-change="getValIfSlotNo(selectedName,EnteredValue)">
+	   <table ng-show="carSlotsAvailable" class="table table-bordered" style="width: 100%">
+      <thead>
+        <tr id="tableHeader">
+           
+
+          <th id="header" ng-repeat="header in headers">{{header}}</th>
+       
+        </tr>
+      </thead>
+      <tbody>
+
+
+        <tr>
+          
+          <td>
+            <input style="width: 120px" type="text" class="form-control" ng-model="user.Colour">
+          </td>
+
+          <td>
+            <input type="text" placeholder="KA-00-AA-2345" class="form-control" ng-model="user.RegistrationNo">
+          </td>
+
+
+          <td>
+            <input ng-disabled=true type="text" class="form-control" ng-model="user.SlotNo">
+          </td>
+          <td style="background-color: black">
+            <button style="margin-left: 20%" id="Add" title="Add new car for parking" class="ui inverted green button" type="button"
+              ng-click="addUser(user)">Add</button>
+          </td>
+        </tr>
+
+        <tr id="tableBodyRow" ng-repeat="user in userslist|orderBy:'SlotNo'|filter:EnteredValueForFilter">
+
+
+          <td>
+            <input ng-disabled=true type="text" class="form-control" ng-model="user.Colour">
+          </td>
+          <td>
+            <input ng-disabled=true type="text" class="form-control" ng-model="user.RegistrationNo">
+          </td>
+          <td>
+            <input ng-disabled=true type="text" class="form-control" ng-model="user.SlotNo">
+          </td>
+
+         
+
+
+                    <td style="background-color: black">
+            <button style="margin-left: 20%" id="Remove" title="Remove the car from the slot" class="ui inverted purple button" type="button"
+              ng-click="removeUser(user)">Remove</button>
+          </td>
+        </tr>
+
+
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
